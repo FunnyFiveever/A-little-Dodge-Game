@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfsbybu7von4k"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_6otxr"]
+[ext_resource type="Texture2D" uid="uid://u2jvunvb01xt" path="res://art/enemyFlyingAlt_1.png" id="2_vbigq"]
+[ext_resource type="Texture2D" uid="uid://brjpyi4kqhm3d" path="res://art/enemyFlyingAlt_2.png" id="3_08vkq"]
+[ext_resource type="Texture2D" uid="uid://dyaaqwxkydrtn" path="res://art/enemySwimming_1.png" id="4_jr5sw"]
+[ext_resource type="Texture2D" uid="uid://4w2pwfb0h1xq" path="res://art/enemySwimming_2.png" id="5_08hjj"]
+[ext_resource type="Texture2D" uid="uid://crtvr7ls401qe" path="res://art/enemyWalking_1.png" id="6_78apr"]
+[ext_resource type="Texture2D" uid="uid://d2de6d62sgidg" path="res://art/enemyWalking_2.png" id="7_wsj1d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6uh3y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vbigq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_08vkq")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jr5sw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_08hjj")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_78apr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wsj1d")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0cm4a"]
+radius = 36.0
+height = 104.0
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_6otxr")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_6uh3y")
+animation = &"swim"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0cm4a")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
